@@ -50,9 +50,7 @@ $fa-font-path: "../fonts";
 
 .appContent {
   flex: 1;
-  padding-top: 70px;
-  padding-right: 100px;
-  padding-left: 100px;
+  padding: 70px 100px 0 100px;
 }
 
 .header {
@@ -63,9 +61,7 @@ $fa-font-path: "../fonts";
   font-size: 24px;
   letter-spacing: 0.75px;
   color: $black;
-  padding-top: 10px;
-  padding-left: 15%;
-  padding-right: 80px;
+  padding: 10px 15% 0 80px;
 }
 
 .websitetitle {
