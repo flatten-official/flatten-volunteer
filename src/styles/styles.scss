@@ -51,7 +51,7 @@ body {
 .app {
   display: flex;
   flex-flow: column;
-  min-height: 100vh; // Max height 100% of view height
+  min-height: 100vh; // Min height 100% of view height (effectively pushes the footer to the bottom of the page)
 }
 
 .appContent {
