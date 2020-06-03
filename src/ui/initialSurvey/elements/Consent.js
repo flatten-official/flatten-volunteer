@@ -29,7 +29,8 @@ export const Consent = () => {
               MissingTranslation {/* Is replaced by i18n*/}
               <a href="https://flatten.ca/privacy-policy">Privacy Policy</a>
               and
-              <a href="https://flatten.ca/terms-of-service">Terms of Service</a>.
+              <a href="https://flatten.ca/terms-of-service">Terms of Service</a>
+              .
             </Trans>
           </center>
           <div className="fourtypxmargin" />

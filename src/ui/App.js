@@ -28,7 +28,8 @@ const AppContent = () => {
   if (auth.status === AUTH_UNINITIALISED) return <Loading />;
 
   return (
-    <center><div className="container" id="main">
+    <center>
+      <div className="container" id="main">
         <PrivateRoute
           exact
           path={Routes.home}
