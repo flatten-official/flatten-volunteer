@@ -12,6 +12,8 @@ import {
   ConnectedConsent,
   ConnectedLocationPicker,
 } from "./ConnectedComponents";
+import { AUTH_EARLY_EXPIRE } from "../../backend/auth/authActions";
+import { checkWillExpireSoon } from "../../backend/auth/authApi";
 
 /**
  * This function returns a survey page component.
@@ -31,6 +33,10 @@ const SurveyPageFactory = ({
   class SurveyPageContent extends React.Component {
     constructor(props) {
       super(props);
+
+      // Resets expiry if will soon expire (therefore forcing user to logout)
+      if (checkWillExpireSoon(this.props.expiry)) this.props.expireEarly();
+
       this.props.restartForm(); // Reset the form when the component is first loaded
     }
 
@@ -63,18 +69,22 @@ const SurveyPageFactory = ({
 
   SurveyPageContent.propTypes = {
     surveyData: PropTypes.object,
+    expiry: PropTypes.number,
+    expireEarly: PropTypes.func,
     redirectToSuccess: PropTypes.func,
     restartForm: PropTypes.func,
   };
 
   const mapStateToProps = (state) => ({
     surveyData: state.surveys[state.surveys.activeSurvey],
+    expiry: state.auth.user.expiry,
   });
 
   const mapDispatchToProps = (dispatch) => ({
     restartForm: () =>
       dispatch({ type: Types.RESTART_SURVEY, payload: surveyKey }),
     redirectToSuccess: () => dispatch(push(Routes.success)),
+    expireEarly: () => dispatch({ type: AUTH_EARLY_EXPIRE }),
   });
 
   const SurveyPageContentConnected = connect(

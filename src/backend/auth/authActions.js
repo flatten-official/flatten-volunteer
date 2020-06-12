@@ -9,6 +9,7 @@ export const AUTH_INITIALISING = "AUTH_INITIALISING";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const AUTH_EARLY_EXPIRE = "AUTH_EARLY_EXPIRE";
 
 export const fetchAuthState = () => async (dispatch) => {
   try {
