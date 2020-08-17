@@ -53,7 +53,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // Merge with the public folder
     copyPublicFolder();
     // Start the webpack build
-    return buildFrontend(previousFileSizes);
+    return build(previousFileSizes);
   })
   .then(
     ({ stats, previousFileSizes, warnings }) => {
@@ -97,7 +97,7 @@ checkBrowsers(paths.appPath, isInteractive)
   });
 
 // Create the production build and print the deployment instructions.
-function buildFrontend(previousFileSizes) {
+function build(previousFileSizes) {
   console.log("Creating an optimized production build...");
 
   const compiler = webpack(config);
