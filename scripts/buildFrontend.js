@@ -12,8 +12,8 @@ process.on("unhandledRejection", (err) => {
 const chalk = require("react-dev-utils/chalk");
 const fs = require("fs-extra");
 const webpack = require("webpack");
-const configFactory = require("../config/webpack.config");
-const paths = require("../config/paths");
+const configFactory = require("../packages/frontend/config/webpack.config");
+const paths = require("../packages/frontend/config/paths");
 const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const FileSizeReporter = require("react-dev-utils/FileSizeReporter");
@@ -53,7 +53,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // Merge with the public folder
     copyPublicFolder();
     // Start the webpack build
-    return build(previousFileSizes);
+    return buildFrontend(previousFileSizes);
   })
   .then(
     ({ stats, previousFileSizes, warnings }) => {
@@ -97,7 +97,7 @@ checkBrowsers(paths.appPath, isInteractive)
   });
 
 // Create the production build and print the deployment instructions.
-function build(previousFileSizes) {
+function buildFrontend(previousFileSizes) {
   console.log("Creating an optimized production build...");
 
   const compiler = webpack(config);

@@ -1,12 +1,12 @@
-README.md
+packages/frontend/README.md
 .idea
 dist
 node_modules
 .firebaserc
 .firebase
 build
-src/i18nResources.json
-src/api/backend.js
+packages/frontend/src/i18nResources.json
+packages/frontend/src/api/backend.js
 .eslintcache
 .DS_Store
 .git
