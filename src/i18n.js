@@ -20,9 +20,9 @@ import navbarEN from "./translations/en/Navbar.json";
 import formIOCustomTextEN from "./translations/en/FormIoCustomText.json";
 import SurveysEN from "./translations/en/Surveys.json";
 import GeneralEN from "./translations/en/General.json";
+import adminEN from "./translations/en/Admin.json";
 
 // FORMIO CONTENT SOMALI
-import formIOAddVolunteerSO from "./translations/so/translation/AddVolunteer.json";
 import formIODefaultsSO from "./translations/so/translation/Defaults.json";
 import formIOInitialHouseholdSurveySO from "./translations/so/translation/InitialVolunteerSurvey.json";
 import formIOGraveDiggerSurveySO from "./translations/so/translation/GraveDiggerSurvey.json";
@@ -59,10 +59,10 @@ const resources = {
     FormIOCustomText: formIOCustomTextEN,
     Surveys: SurveysEN,
     General: GeneralEN,
+    Admin: adminEN,
   },
   so: {
     translation: {
-      ...formIOAddVolunteerSO,
       ...formIODefaultsSO,
       ...formIOInitialHouseholdSurveySO,
       ...formIOVolunteerLoginSO,
@@ -78,6 +78,7 @@ const resources = {
     FormIOCustomText: formIOCustomTextSO,
     Surveys: SurveysSO,
     General: GeneralSO,
+    Admin: adminEN, // Even in Somali use the English version
   },
 };
 
@@ -89,6 +90,7 @@ i18n
   .init({
     resources,
     debug: process.env.NODE_ENV === "development",
+    fallbackLng: "en",
   });
 
 export default i18n;

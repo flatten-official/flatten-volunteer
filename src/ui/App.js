@@ -12,9 +12,11 @@ import {
   AUTH_AUTHENTICATED,
   AUTH_UNINITIALISED,
   fetchAuthState,
+  UNAUTHENTICATED_CONTEXT,
 } from "../backend/auth/authActions";
 import SurveyPageFactory from "./surveys/SurveyPageFactory";
 import PrivatePage from "./components/PrivatePage";
+import VolunteerAddPage from "./admin/VolunteerAddPage";
 
 const AuthenticatedAppContent = () => {
   const getHomePageRoute = () => (
@@ -27,15 +29,19 @@ const AuthenticatedAppContent = () => {
     />
   );
 
-  const makeSurveyRoute = (survey) => (
+  const makeSurveyRoute = (survey) =>
+    makePrivateRoute(
+      survey.route,
+      SurveyPageFactory(survey),
+      permissions.submitForms
+    );
+
+  const makePrivateRoute = (path, comp, requiredPermission) => (
     <Route
       exact
-      path={survey.route}
+      path={path}
       render={() => (
-        <PrivatePage
-          comp={SurveyPageFactory(survey)}
-          requiredPermission={permissions.submitForms}
-        />
+        <PrivatePage comp={comp} requiredPermission={requiredPermission} />
       )}
     />
   );
@@ -48,6 +54,11 @@ const AuthenticatedAppContent = () => {
         {makeSurveyRoute(Surveys.gravedigger)}
         {makeSurveyRoute(Surveys.hospital)}
         {makeSurveyRoute(Surveys.initialBRA)}
+        {makePrivateRoute(
+          Routes.addVolunteer,
+          VolunteerAddPage,
+          permissions.manageVolunteers
+        )}
 
         <Redirect from="*" to={Routes.home} />
       </Switch>
@@ -57,11 +68,11 @@ const AuthenticatedAppContent = () => {
 
 const AppContent = () => {
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth.status);
+  const authState = useSelector((state) => state.auth.state);
 
-  // On first load, get the app state
+  // On first load, get the auth state
   useEffect(() => {
-    dispatch(fetchAuthState());
+    dispatch(fetchAuthState(UNAUTHENTICATED_CONTEXT.initialPageLoad, true));
   }, [dispatch]);
 
   switch (authState) {
