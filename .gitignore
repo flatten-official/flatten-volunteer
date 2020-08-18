@@ -8,4 +8,4 @@ packages/frontend/src/i18nResources.json
 packages/frontend/src/api/backend.js
 .eslintcache
 .DS_Store
-packages/frontend/src/branch.json
+branch.json
