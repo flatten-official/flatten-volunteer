@@ -4,6 +4,7 @@ node_modules
 .firebaserc
 .firebase
 build
+packages/frontend/src/api/backend.js
 .eslintcache
 .DS_Store
 branch.json
