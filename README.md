@@ -1,5 +1,7 @@
 # The Volunteer Form Website
 
+## :warning: **This project has moved to our monorepo [here](https://github.com/flatten-official/flatten-somalia). This repository is no longer maintained.** :warning:
+
 ## Prerequisites
 
 - Node
